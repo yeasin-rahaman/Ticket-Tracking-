@@ -5,11 +5,36 @@ const CustomerTickets = ({ ticketData, handleSelectedTicket, selectedData, handl
 
 
     return (
-        <div className="min-h-screen p-8 ">
+        <div className="min-h-screen p-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
+                {/* RIGHT SIDE (Show First on Mobile) */}
+                <div className="order-1 lg:order-2">
+                    <h2 className="text-xl font-semibold mb-4">Task Status</h2>
+
+                    {selectedData.map((ticket) => (
+                        <CompleteTicketCart
+                            key={ticket.id}
+                            ticket={ticket}
+                            handleResolveTicket={handleResolveTicket}
+                        />
+                    ))}
+
+                    <h3 className="font-medium mb-2 mt-6">Resolved Task</h3>
+
+                    {resolveTickets?.map((resolve) => (
+                        <div key={resolve.id} className="card bg-base-100 shadow-md mt-2">
+                            <div className="card-body p-4">
+                                <p className="text-xs text-gray-400">
+                                    {resolve.title}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
                 {/* LEFT SIDE */}
-                <div className="lg:col-span-2">
+                <div className="lg:col-span-2 order-2 lg:order-1">
                     <h2 className="text-xl font-semibold mb-4">Customer Tickets</h2>
 
                     <div className="grid md:grid-cols-2 gap-4">
@@ -18,42 +43,13 @@ const CustomerTickets = ({ ticketData, handleSelectedTicket, selectedData, handl
                                 key={ticket.id}
                                 ticket={ticket}
                                 handleSelectedTicket={handleSelectedTicket}
-                            ></CustomerTicketCart>
+                            />
                         ))}
                     </div>
                 </div>
 
-                {/* RIGHT SIDE */}
-                <div>
-                    <h2 className="text-xl font-semibold mb-4">Task Status</h2>
-                    {
-                        selectedData.map((ticket) => (
-                            <CompleteTicketCart
-                                key={ticket.id}
-                                ticket={ticket}
-                                handleResolveTicket={handleResolveTicket}
-                            >
-                            </CompleteTicketCart>
-                        ))
-                    }
-                    <h3 className="font-medium mb-2">Resolved Task</h3>
-                    {
-                        resolveTickets?.map((resolve) => (
-                            <div key={resolve.id} className="card bg-base-100 shadow-md mt-2">
-
-                                <div className="card-body p-4">
-                                    <p className="text-xs text-gray-400">
-                                        {resolve.title}
-                                    </p>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
             </div>
         </div>
-
-
     );
 };
 

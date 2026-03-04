@@ -9,15 +9,25 @@ const CustomerTicketCart = ({ handleSelectedTicket, ticket }) => {
                             {ticket.title}
                         </h3>
 
-                        <div className="badge badge-outline badge-sm p-3 text-center items-center">
-                            <span
-                                className={`w-2 h-2 rounded-full mr-1 ${ticket.status === "Open"
-                                    ? "bg-green-500"
+                        <div
+                            className={`flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full whitespace-nowrap
+    ${ticket.status === "Open"
+                                    ? "bg-green-500/10 text-green-500 border border-green-500/30"
                                     : ticket.status === "In Progress"
-                                        ? "bg-yellow-500"
-                                        : "bg-gray-400"
+                                        ? "bg-yellow-500/10 text-yellow-500 border border-yellow-500/30"
+                                        : "bg-gray-500/10 text-gray-500 border border-gray-500/30"
+                                }`}
+                        >
+                            <span
+                                className={`w-2 h-2 rounded-full 
+      ${ticket.status === "Open"
+                                        ? "bg-green-500"
+                                        : ticket.status === "In Progress"
+                                            ? "bg-yellow-500"
+                                            : "bg-gray-400"
                                     }`}
                             ></span>
+
                             {ticket.status}
                         </div>
                     </div>
