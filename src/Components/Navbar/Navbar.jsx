@@ -1,7 +1,7 @@
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 shadow-sm align-content-center">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -31,7 +31,7 @@ const Navbar = () => {
                     <li><a>Blog</a></li>
                     <li><a>Download</a></li>
                     <li><a>Contact</a></li>
-                    <li><a><button>New Ticket</button></a></li>
+                    <li className="rounded  bg-gradient-to-r  to-indigo-600 shadow-lg from-purple-600"><a>+ New Ticket</a></li>
                 </ul>
             </div>
 
