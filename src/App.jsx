@@ -37,8 +37,9 @@ const App = () => {
 
   return (
     <div >
+      <Navbar ></Navbar>
       <div className='max-w-[1600px] mx-auto'>
-        <Navbar ></Navbar>
+
         <Banner inProgress={selectedData.length} resolved={resolveTickets.length}></Banner>
         <Suspense fallback={<h1>Loading</h1>}>
           <CustomerTickets

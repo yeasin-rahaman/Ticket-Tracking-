@@ -20,9 +20,7 @@ const Footer = () => {
                             CS — Ticket System
                         </h2>
                         <p className="text-sm leading-6">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text
-                            ever since the 1500s.
+                            A Customer Support (CS) Ticket System is a centralized platform designed to manage, track, and resolve customer inquiries efficiently.
                         </p>
                     </div>
 

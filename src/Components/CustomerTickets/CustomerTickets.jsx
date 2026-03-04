@@ -5,7 +5,7 @@ const CustomerTickets = ({ ticketData, handleSelectedTicket, selectedData, handl
 
 
     return (
-        <div className="min-h-screen p-8 bg-base-200">
+        <div className="min-h-screen p-8 ">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
                 {/* LEFT SIDE */}
