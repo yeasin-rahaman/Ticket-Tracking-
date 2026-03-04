@@ -21,6 +21,7 @@ const App = () => {
     setAvailableBalance(availableBalance + PlayerPrice)
 
   }
+
   return (
     <div >
       <div className='max-w-[1600px] mx-auto'>
