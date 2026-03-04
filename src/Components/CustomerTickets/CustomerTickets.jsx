@@ -1,8 +1,9 @@
 import React, { use } from "react";
 
-const CustomerTickets = ({ ticketPromise }) => {
+const CustomerTickets = ({ ticketPromise, handleSelectedTicket, selectedData, handleResolveTicket, resolveTickets }) => {
+    console.log(resolveTickets);
     const tickets = use(ticketPromise);
-    console.log(tickets);
+
     return (
         <div className="min-h-screen p-8 bg-base-200">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -30,7 +31,7 @@ const CustomerTickets = ({ ticketPromise }) => {
 
                             return (
                                 <div key={ticket.id} className="card bg-base-100 shadow-md">
-                                    <div className="card-body p-4">
+                                    <div className="card-body p-4" onClick={() => handleSelectedTicket(ticket)}>
 
                                         <div className="flex justify-between items-start">
                                             <h3 className="font-semibold text-sm">
@@ -73,37 +74,40 @@ const CustomerTickets = ({ ticketPromise }) => {
                 {/* RIGHT SIDE */}
                 <div>
                     <h2 className="text-xl font-semibold mb-4">Task Status</h2>
+                    {
+                        selectedData.map((ticket) => (
+                            <div key={ticket.id} className="card bg-base-100 shadow-md mb-4">
+                                <div className="card-body p-4">
+                                    <p className="text-sm mb-3">{ticket.title}</p>
+                                    <button onClick={() => { handleResolveTicket(ticket) }} className="btn btn-success btn-sm w-full">
+                                        Complete
+                                    </button>
+                                </div>
+                            </div>
+                        ))
+                    }
 
-                    <div className="card bg-base-100 shadow-md mb-4">
-                        <div className="card-body p-4">
-                            <p className="text-sm mb-3">Payment Failed - Card Declined</p>
-                            <button className="btn btn-success btn-sm w-full">
-                                Complete
-                            </button>
-                        </div>
-                    </div>
 
-                    <div className="card bg-base-100 shadow-md mb-4">
-                        <div className="card-body p-4">
-                            <p className="text-sm mb-3">Incorrect Billing Address</p>
-                            <button className="btn btn-success btn-sm w-full">
-                                Complete
-                            </button>
-                        </div>
-                    </div>
+                    <h3 className="font-medium mb-2">Resolved Task</h3>
 
-                    <div className="card bg-base-100 shadow-md">
-                        <div className="card-body p-4">
-                            <h3 className="font-medium mb-2">Resolved Task</h3>
-                            <p className="text-xs text-gray-400">
-                                No resolved tasks yet.
-                            </p>
-                        </div>
-                    </div>
+                    {
+                        resolveTickets?.map((resolve) => (
+                            <div className="card bg-base-100 shadow-md mt-2">
+
+                                <div className="card-body p-4">
+                                    <p className="text-xs text-gray-400">
+                                        {resolve.title}
+                                    </p>
+                                </div>
+                            </div>
+
+                        ))
+                    }
                 </div>
-
             </div>
         </div>
+
+
     );
 };
 

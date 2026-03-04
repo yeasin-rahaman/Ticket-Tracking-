@@ -12,23 +12,33 @@ const fetchTicket = async () => {
 
 const ticketPromise = fetchTicket()
 const App = () => {
-  const [availableBalance, setAvailableBalance] = useState(10000000)
-  const [purchasedPlayers, setPurchasedPlayers] = useState([])
-  const removePlayer = (p) => {
-    const filteredData = purchasedPlayers.filter(ply => ply.player_name !== p.player_name)
-    setPurchasedPlayers(filteredData)
-    const PlayerPrice = parseInt(p.price.split("USD").join("").split(",").join(""))
-    setAvailableBalance(availableBalance + PlayerPrice)
-
+  const [selectedData, setSelectedData] = useState([])
+  const [resolveTickets, setResolveTickets] = useState([])
+  const handleResolveTicket = (ResolveTicket) => {
+    const newData = [...resolveTickets, ResolveTicket]
+    setResolveTickets(newData)
+    const filteredData = selectedData.filter(resolve => resolve.id !== ResolveTicket.id)
+    setSelectedData(filteredData)
   }
 
+  // console.log(resolveTicket);
+  const handleSelectedTicket = (ticket) => {
+    const newData = [...selectedData, ticket]
+    setSelectedData(newData)
+  }
   return (
     <div >
       <div className='max-w-[1600px] mx-auto'>
         <Navbar ></Navbar>
-        <Banner></Banner>
+        <Banner inProgress={selectedData.length} resolved={resolveTickets.length}></Banner>
         <Suspense fallback={<h1>Loading</h1>}>
-          <CustomerTickets ticketPromise={ticketPromise}></CustomerTickets>
+          <CustomerTickets
+            ticketPromise={ticketPromise}
+            handleSelectedTicket={handleSelectedTicket}
+            selectedData={selectedData}
+            handleResolveTicket={handleResolveTicket}
+            resolveTickets={resolveTickets}
+          ></CustomerTickets>
         </Suspense>
 
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 import leftLines from "./../../assets/Group 1.png";
 import rightLines from "./../../assets/Group 2.png";
 
-const Banner = ({ inProgress = 0, resolved = 0 }) => {
+const Banner = ({ inProgress, resolved }) => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto p-6">
 
